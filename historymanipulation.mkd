@@ -1,0 +1,59 @@
+Advanced Bash Usage #1 - History Manipulation
+---
+
+1. Overview of BASH history
+	* `history`
+
+2. Basic History Recall
+	* `!!` - Previous command
+	* `!n` - Nth previous command
+
+3. Parameter Recall
+	* `!*` - All parameters from last command, excluding zeroth (the command itself)
+	* `!:n` - Nth parameter from previous command (1 indexed)
+
+4. Advanced Recall
+	* `!?<search>` - Previous command with the word `<search>` in it, if you
+		want to use a command on such a recall you will need to close `<search>` with a `?`
+		ie., `!?foo?`
+	* `!<command>`   - Previous `<command>`
+
+From here on any one of `!!`, `!n`, `!<command>`, or `!?<search>?` will be referred to as `<history ref>`
+
+5. Advanced Parameter Recall
+	* `<history ref>:<n/^/$/*>` - Nth, first, last, or all respectively of the history ref
+
+6. Basic Replace
+	* `^foo^bar` - Replace first occurrence of 'foo' with 'bar' in previous command
+
+7. Advanced Replace
+	* `<history ref>:s/foo/bar` - Replace first occurrence of foo with bar in history ref
+		* Example: !395:s/sbiddle/shawn/
+	* `<history ref>:gs/foo/bar` - Replace all occurrences of foo with bar in history ref
+
+8. Modifiers (These are essentially filters applied to a substitution)
+A "substitution" is any of the above ways to recall a previous command/parameter
+	* `<substitution>:t` - The "tail" of the string, ie., the filename in a path
+		* Example: !cat:t
+	* `<substitution>:h` - The "head" of the string, ie., the path minus the filename
+	* `<substitution>:q` - Surround the substitution with single quotes
+	* `<substitution>:x` - Split the substitution on spaces/newlines and then surround those with quotes
+		Example:
+
+    > cat /foo/bar /baz/quz
+    ...
+    > echo !cat:*:x
+	echo '/foo/bar' '/baz/quz'
+
+8. History settings
+All of these you can set in your .bashrc with
+
+    export <setting>=<value>
+
+Settings:
+	* HISTSIZE (number) - How many entries to store (defaults to 500)
+	* HISTCONTROL (string) - Behavior of the history
+		* ignoredups - Don't put the command in your history if it's the same as the previous command
+		* ignorespace - Don't put the command in your history if there is leading whitespace. Useful
+			if you want to run some commands without having them be in the bare history file
+		* ignoreboth - Both of the previous settings
