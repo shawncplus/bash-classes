@@ -28,17 +28,18 @@ From here on any one of `!!`, `!n`, `!<command>`, or `!?<search>?` will be refer
 
 7. Advanced Replace
 	* `<history ref>:s/foo/bar` - Replace first occurrence of foo with bar in history ref
-		* Example: !395:s/sbiddle/shawn/
+		* Example: `!395:s/sbiddle/shawn/`
 	* `<history ref>:gs/foo/bar` - Replace all occurrences of foo with bar in history ref
 
 8. Modifiers (These are essentially filters applied to a substitution)
 A "substitution" is any of the above ways to recall a previous command/parameter
 	* `<substitution>:t` - The "tail" of the string, ie., the filename in a path
-		* Example: !cat:t
+		* Example: `!cat:t`
 	* `<substitution>:h` - The "head" of the string, ie., the path minus the filename
 	* `<substitution>:q` - Surround the substitution with single quotes
 	* `<substitution>:x` - Split the substitution on spaces/newlines and then surround those with quotes
-		Example:
+
+Example:
 
     > cat /foo/bar /baz/quz
     ...
@@ -46,11 +47,7 @@ A "substitution" is any of the above ways to recall a previous command/parameter
 	echo '/foo/bar' '/baz/quz'
 
 8. History settings
-All of these you can set in your .bashrc with
-
-    export <setting>=<value>
-
-Settings:
+All of these you can set in your .bashrc with `export <setting>=<value>`
 	* HISTSIZE (number) - How many entries to store (defaults to 500)
 	* HISTCONTROL (string) - Behavior of the history
 		* ignoredups - Don't put the command in your history if it's the same as the previous command
