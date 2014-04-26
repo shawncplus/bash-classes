@@ -1,16 +1,13 @@
-Advanced Bash Usage #1 - History Manipulation
----
-
 1. Overview of BASH history
 	* `history`
 
 2. Basic History Recall
 	* `!!` - Previous command
-	* `!n` - Nth previous command
+	* `!n` - N<sup>th</sup> previous command
 
 3. Parameter Recall
-	* `!*` - All parameters from last command, excluding zeroth (the command itself)
-	* `!:n` - Nth parameter from previous command (1 indexed)
+	* `!*` - All parameters from last command, excluding 0<sup>th</sup> (the command itself)
+	* `!:n` - N<sup>th</sup> parameter from previous command (1 indexed)
 
 4. Advanced Recall
 	* `!?<search>` - Previous command with the word `<search>` in it, if you
@@ -21,7 +18,7 @@ Advanced Bash Usage #1 - History Manipulation
 From here on any one of `!!`, `!n`, `!<command>`, or `!?<search>?` will be referred to as `<history ref>`
 
 5. Advanced Parameter Recall
-	* `<history ref>:<n/^/$/*>` - Nth, first, last, or all respectively of the history ref
+	* `<history ref>:<n/^/$/*>` - N<sup>th</sup>, first, last, or all respectively of the history ref
 
 6. Basic Replace
 	* `^foo^bar` - Replace first occurrence of 'foo' with 'bar' in previous command
